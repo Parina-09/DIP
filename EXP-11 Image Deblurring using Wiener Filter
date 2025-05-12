@@ -1,0 +1,30 @@
+Image Deblurring using Wiener Filter
+
+
+original_img = imread('C:\\Users\\parin\\Desktop\\butterfly.png');
+original_img = im2double(original_img);  
+
+PSF = fspecial('motion', 21, 50);  
+blurred_img = imfilter(original_img, PSF, 'conv', 'same');
+
+figure;
+
+subplot(2,2,1);
+imshow(original_img);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(blurred_img);
+title('Blurred Image');
+
+deblurred_img = deconvwnr(blurred_img, PSF, 0.02); 
+
+subplot(2,2,3);
+imshow(deblurred_img);
+title('Wiener Filtered Image');
+
+difference = abs(blurred_img - deblurred_img);
+subplot(2,2,4);
+imshow(difference);
+title('Difference (Blurred - Deblurred)');
+sgtitle("Parina Garg")
