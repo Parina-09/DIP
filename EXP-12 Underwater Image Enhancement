@@ -1,0 +1,48 @@
+Underwater Image Enhancement
+
+% MATLAB Code for Underwater Image Enhancement
+
+image_path = 'C:\\Users\\parin\\Downloads\\underwater.jpeg'; 
+I = imread(image_path);
+I_double = im2double(I);
+I_eq = histeq(I_double);
+
+I_color_corrected = I_double;
+I_color_corrected(:,:,1) = I_double(:,:,1) * 1.8; 
+I_color_corrected(:,:,2) = I_double(:,:,2) * 2.0; 
+I_color_corrected(:,:,3) = I_double(:,:,3) * 1.85; 
+
+hazy_image = I_double;
+hazy_image = hazy_image + 0.3 * randn(size(hazy_image)); 
+
+figure('Position', [100, 100, 1200, 600]);
+
+subplot(2,3,1),imshow(I),title('Original Image');
+
+subplot(2,3,2);
+imshow(I_eq);
+title('Histogram Equalized Image');
+
+subplot(2,3,3);
+imshow(I_color_corrected);
+title('Color Corrected Image');
+
+subplot(2,3,4);
+imshow(hazy_image);
+title('Hazy Image (Simulated)');
+
+subplot(2,3,5);
+imshow(I_double);
+title('Enhanced Image (Simulated Dehazing)');
+lab_img = rgb2lab(I_color_corrected);
+
+L = lab_img(:,:,1) / 100; 
+L_clahe = adapthisteq(L, 'ClipLimit', 0.01, 'NumTiles', [8 8]); 
+lab_img(:,:,1) = L_clahe * 100; 
+
+final_clahe = lab2rgb(lab_img);
+
+subplot(2,3,6);
+imshow(final_clahe);
+title('Final Enhanced Image (Color & Contrast)');
+sgtitle("Parina Garg")
