@@ -1,0 +1,33 @@
+Display of FFT (1-D & 2-D) of an image and apply Two-dimensional Fourier transform to represent the content of an image using the discrete Fourier transform (DFT) and masking with DFT in MATLAB.
+
+originalImage = imread('C:\\Users\\parin\\Desktop\\download.jpeg'); 
+figure;
+subplot(2, 3, 1);
+imshow(originalImage);
+title('Original Image');
+originalImage = rgb2gray(originalImage); 
+
+subplot(2, 3, 2);
+imshow(originalImage);
+title('BlacknWhite Image');
+
+fftImage = fft2(double(originalImage));
+magnitudeSpectrum = log(1 + abs(fftshift(fftImage)));
+subplot(2, 3, 3);
+imshow(magnitudeSpectrum, []);
+title('Magnitude Spectrum');
+
+mask = ones(size(fftImage));
+maskSize = 30;
+mask(end/2 - maskSize:end/2 + maskSize, end/2 - maskSize:end/2 + maskSize) = 0; 
+filteredImage = fftImage .* mask;
+
+filteredMagnitude = log(1 + abs(fftshift(filteredImage)));
+subplot(2, 3, 4);
+imshow(filteredMagnitude, []);
+title('Filtered Magnitude Spectrum');
+
+filteredImageSpatial = real(ifft2(filteredImage));
+subplot(2, 3, 5);
+imshow(filteredImageSpatial, []);
+title('Filtered Spatial Image');
