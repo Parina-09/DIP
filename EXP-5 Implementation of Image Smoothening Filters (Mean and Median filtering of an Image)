@@ -1,0 +1,36 @@
+Implementation of Image Smoothening Filters (Mean and Median filtering of an Image)
+
+I = imread('C:\\Users\\parin\\Desktop\\butterfly.png'); 
+K = rgb2gray(I); 
+J = imnoise(K, 'salt & pepper', 0.05); 
+f = medfilt2(J, [3, 3]); 
+f1 = medfilt2(J, [10, 10]); 
+
+i = imread('C:\\Users\\parin\\Desktop\\butterfly.png'); 
+g = rgb2gray(i); 
+g1 = fspecial('average', [3 3]); 
+b1 = imfilter(g, g1); 
+g2 = fspecial('average', [10 10]); 
+b2 = imfilter(g, g2); 
+
+I2 = imread('C:\\Users\\parin\\Desktop\\download.jpeg'); 
+I2 = I2(:, :, 1); 
+a = [0.001 0.001 0.001; 0.001 0.001 0.001; 0.001 0.001 0.001]; 
+R = conv2(double(I2), a, 'same'); 
+b = [0.005 0.005 0.005; 0.005 0.005 0.005; 0.005 0.005 0.005]; 
+R1 = conv2(double(I2), b, 'same'); 
+
+figure; 
+subplot(3,4,1); imshow(I); title('Original Image'); 
+subplot(3,4,2); imshow(K); title('Gray Image'); 
+subplot(3,4,3); imshow(J); title('Noise added Image'); 
+subplot(3,4,4); imshow(f); title('Median 3x3'); 
+subplot(3,4,5); imshow(f1); title('Median 10x10'); 
+subplot(3,4,6); imshow(i); title('Original Image'); 
+subplot(3,4,7); imshow(g); title('Gray Image'); 
+subplot(3,4,8); imshow(b1); title('Mean 3x3'); 
+subplot(3,4,9); imshow(b2); title('Mean 10x10'); 
+subplot(3,4,10); imshow(I2); title('Original Image'); 
+subplot(3,4,11); imshow(mat2gray(R)); title('Filtered Image'); 
+subplot(3,4,12); imshow(mat2gray(R1)); title('Filtered Image 2');
+sgtitle("Parina")
