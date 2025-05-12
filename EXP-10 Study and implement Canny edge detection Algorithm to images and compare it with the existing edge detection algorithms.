@@ -1,0 +1,18 @@
+Study and implement Canny edge detection Algorithm to images and compare it with the existing edge detection algorithms.
+
+i = imread('C:\\Users\\parin\\Desktop\\butterfly.png');
+g = rgb2gray(i);
+
+subplot(1,3,1);
+imshow(i);
+title('Original Image');
+
+subplot(1,3,2);
+imshow(g);
+title('Gray Image');
+
+c = edge(g, 'canny');
+subplot(1,3,3);
+imshow(c);
+title('Canny Output');
+sgtitle("Parina Garg")
