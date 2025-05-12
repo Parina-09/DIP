@@ -1,3 +1,5 @@
+Create a program to demonstrate Geometric transformations- Image rotation, scaling, and translation. in MATLAB
+
 img = imread('C:\\Users\\parin\\Desktop\\flower1.jpg');  
 subplot(2,2,1);
 imshow(img);
