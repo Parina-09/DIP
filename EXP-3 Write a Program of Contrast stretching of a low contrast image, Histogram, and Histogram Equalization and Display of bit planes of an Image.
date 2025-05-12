@@ -1,0 +1,25 @@
+Write a Program of Contrast stretching of a low contrast image, Histogram, and Histogram Equalization and Display of bit planes of an Image.
+
+clc; clear; close all;
+
+I = imread('C:\\Users\\parin\\Desktop\\image1.jpeg');
+g = rgb2gray(I);
+J = imadjust(g, stretchlim(g), [0 1]);
+D = imadjust(I,[0.2 0.3 0; 0.6 0.7 1],[]);
+m = histeq(g);
+
+figure;
+subplot(4,4,1); imshow(I); title('Original Image');
+subplot(4,4,2); imshow(g); title('Gray Image');
+subplot(4,4,3); imshow(J); title('Contrast Stretched Image');
+subplot(4,4,4); imshow(D); title('Enhanced Image 2');
+subplot(4,4,5); imhist(g); title('Histogram of Gray Image');
+subplot(4,4,6); imshow(m); title('Equalized Image');
+subplot(4,4,7); imhist(m); title('Histogram of Equalized Image');
+
+for i = 1:8
+    bit_plane = bitget(g, i);
+    subplot(4,4,8+i); imshow(logical(bit_plane)); title(['Bit Plane ', num2str(i)]);
+end
+
+
