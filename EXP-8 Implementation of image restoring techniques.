@@ -1,0 +1,21 @@
+Implementation of image restoring techniques.
+
+inputImage = imread('C:\\Users\\parin\\Desktop\\butterfly.png');
+
+noisyImage = imnoise(inputImage, 'salt & pepper', 0.02);
+filteredImage = medfilt3(noisyImage);
+blurredImage = imread('C:\\Users\\parin\\Desktop\\butterfly.png');
+PSF = fspecial('motion', 20, 45);
+
+blurredImage= imfilter(blurredImage, PSF, 'conv', 'same')
+
+deblurredImage = deconvwnr(blurredImage, PSF,0.05);
+
+figure;
+subplot(3,2,1), imshow(inputImage), title('Original Image');
+subplot(3,2,2), imshow(noisyImage), title('Noisy Image');
+subplot(3,2,3), imshow(filteredImage), title('Filtered Image');
+subplot(3,2,4), imshow(inputImage), title('Original Image');
+subplot(3,2,5), imshow(blurredImage), title('Blurred Image');
+subplot(3,2,6), imshow(deblurredImage), title('Deblurred Image');
+sgtitle("Parina")
