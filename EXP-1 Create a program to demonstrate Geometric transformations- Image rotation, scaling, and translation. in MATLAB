@@ -1,0 +1,26 @@
+img = imread('C:\\Users\\parin\\Desktop\\flower1.jpg');  
+subplot(2,2,1);
+imshow(img);
+title('Original Image');
+
+% Image Rotation 
+theta = 45;
+rotated_img = imrotate(img, theta, 'crop');
+subplot(2,2,2);
+imshow(rotated_img);
+title(['Rotated Image']);
+
+% Scaling Image
+scale_factor = 0.5; 
+scaled_img = imresize(img, scale_factor);
+subplot(2,2,3);
+imshow(scaled_img);
+title(['Scaled Image']);
+
+% Translating Image
+tx = 50; 
+ty = 0; 
+translated_img = imtranslate(img,[tx,ty]); 
+subplot(2,2,4);
+imshow(translated_img);
+title(['Translated image']);
