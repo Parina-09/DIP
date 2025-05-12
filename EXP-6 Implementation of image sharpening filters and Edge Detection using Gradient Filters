@@ -1,0 +1,26 @@
+Implementation of image sharpening filters and Edge Detection using Gradient Filters
+
+i = imread('C:\\Users\\parin\\Desktop\\neurons.jpeg'); 
+g = rgb2gray(i); 
+
+f = fspecial('laplacian', 0.05); 
+im = imfilter(g, f); 
+
+s = edge(g, 'sobel'); 
+p = edge(g, 'prewitt'); 
+r = edge(g, 'roberts'); 
+
+[BW, thresh, gv, gh] = edge(g, 'sobel', [], 'horizontal'); 
+[BW1, thresh1, gv1, gh1] = edge(g, 'sobel', [], 'vertical'); 
+
+figure; 
+subplot(3,3,1); imshow(i); title('Original Image'); 
+subplot(3,3,2); imshow(g); title('Gray Image'); 
+subplot(3,3,3); imshow(im); title('Laplacian'); 
+subplot(3,3,4); imshow(s); title('Sobel'); 
+subplot(3,3,5); imshow(p); title('Prewitt'); 
+subplot(3,3,6); imshow(r); title('Roberts'); 
+subplot(3,3,7); imshow(BW); title('Sobel Horizontal'); 
+subplot(3,3,8); imshow(BW1); title('Sobel Vertical'); 
+subplot(3,3,9); imshowpair(BW, BW1, 'montage'); title('Sobel Horz & Vert');
+sgtitle("Parina")
