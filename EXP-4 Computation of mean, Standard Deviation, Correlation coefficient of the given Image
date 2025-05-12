@@ -1,0 +1,23 @@
+Computation of mean, Standard Deviation, Correlation coefficient of the given Image
+
+i = imread('C:\\Users\\parin\\Desktop\\download.jpeg'); 
+figure; 
+subplot(2,3,1); imshow(i); title('Original Image'); 
+
+g = rgb2gray(i); 
+subplot(2,3,2); imshow(g); title('Gray Image'); 
+
+c = imcrop(g, [10 40 400 900]); 
+subplot(2,3,3); imshow(c); title('Cropped Image'); 
+
+m = mean2(i); disp('m'); disp(m); 
+s = std2(i); disp('s'); disp(s); 
+
+k = (checkerboard > 0.8); 
+subplot(2,3,4); imshow(k); title('Image1'); 
+
+k1 = (checkerboard > 0.5); 
+subplot(2,3,5); imshow(k1); title('Image2'); 
+
+r = corr2(k, k1); disp('r'); disp(r);
+sgtitle("Parina");
